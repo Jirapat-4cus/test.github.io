@@ -1,20 +1,45 @@
-/* ตั้งค่าพื้นฐาน */
-body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f8f8;
-    text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+:root{
+    --pink-light: #DB81B4;
+    --pink-dark: #c4689d;
+    --gray-light: #D4D4D4;
 }
 
-/* Header */
-header {
-    background: linear-gradient(45deg, #f48fb1, #d81b60);
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+*{
+    font-family: "IBM Plex Sans Thai", sans-serif;;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    font-weight: 600;
+    background: linear-gradient(45deg, var(--pink-dark), var(--pink-light));
     color: white;
-    padding: 15px;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+#app-name{
+    font-size: 1.2rem;
 }
 
 .profile {
@@ -23,63 +48,83 @@ header {
     gap: 10px;
 }
 
-.profile img {
-    width: 40px;
-    height: 40px;
+.profile-pic {
+    width: 30px;
+    aspect-ratio: 1;
     border-radius: 50%;
     border: 2px solid white;
+    background-color: var(--pink-light);
 }
 
-/* รายการโปรด */
-.favorite {
-    background: white;
-    margin: 20px;
+.section{
+    background: none;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* หมวดหมู่ */
-.categories {
-    margin: 20px;
+.section-title{
+    padding: 2px 0px;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    width: 100%;
+    text-align: left;
 }
 
-.category-list {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+.section-content{
+    width: fit-content;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .category {
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
     text-align: center;
+    width: 105px;
+}
+
+.category-icon{
+    background-color: var(--gray-light);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    height: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
 }
 
-.category img {
-    width: 50px;
-    height: 50px;
+.category-title{
+    padding-top: 4px;
+    color: var(--pink-dark);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-/* เมนูด้านล่าง */
 .bottom-nav {
     position: fixed;
     bottom: 0;
+    height: 65px;
     width: 100%;
-    background: #f48fb1;
+    background-color: var(--pink-dark);
     display: flex;
     justify-content: space-around;
-    padding: 10px;
+    padding: 12px 10px;
+    padding-bottom: 15px;
+    border-radius: 20px 20px 0px 0px;
 }
 
-.bottom-nav button {
-    background: none;
-    border: none;
-}
-
-.bottom-nav img {
-    width: 30px;
+.round{
     height: 30px;
+    aspect-ratio: 1;
+    background-color: #FFFFFF;
+    color: var(--pink-dark);
+    border-radius: 50%;
+    border: none;
+    outline: none;
+}
+
+.bottom-nav .round{
+    height: 100%;
+    font-size: 20px;
+    line-height: 0;
 }

@@ -7,43 +7,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
+        <div id="app-name">BJ Next</div>
         <div class="profile">
-            <img src="profile.png" alt="โปรไฟล์">
+            <div class="profile-pic"></div>
+            <!--<img src="profile.png" alt="Profile">-->
             <span>นายภูเบศ คงงง</span>
         </div>
     </header>
 
-    <!-- รายการโปรด -->
-    <section class="favorite">
-        <h2>⭐ รายการโปรด</h2>
+    <section>
+            <div id="favsec" class="section flex-col">
+                <div class="section-title">⭐ รายการโปรด</div>
+                <div class="section-content flex-row"></div>
+            </div>
+            <div id="catsec" class="section flex-col">
+                <div class="section-title">หมวดหมู่</div>
+                <div class="section-content flex-row">
+                    <div class="category flex-col" fav="true">
+                        <div class="category-icon"></div>
+                        <div class="category-title">Mental Care</div>
+                    </div>
+                    <div class="category flex-col" fav="false">
+                        <div class="category-icon"></div>
+                        <div class="category-title">R-Waste</div>
+                    </div>
+                </div>
+            </div>
     </section>
+    
+    <div class="bottom-nav">
+        <button class="round"><i class="bi bi-house-door-fill"></i></button>
+        <button class="round"><i class="bi bi-gear"></i></button>
+    </div>
 
-    <!-- หมวดหมู่ -->
-    <section class="categories">
-        <h2>หมวดหมู่</h2>
-        <div class="category-list">
-            <div class="category">
-                <img src="heart.png" alt="Mental-care">
-                <p>Mental-care</p>
-            </div>
-            <div class="category">
-                <img src="recycle.png" alt="R-waste">
-                <p>R-waste</p>
-            </div>
-            <div class="category">
-                <img src="recycle.png" alt="R-waste">
-                <p>R-waste</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- เมนูด้านล่าง -->
-    <nav class="bottom-nav">
-        <button><img src="home.png" alt="Home"></button>
-        <button><img src="settings.png" alt="Settings"></button>
-    </nav>
-
+    <script src="cat.js"></script>
 </body>
 </html>
