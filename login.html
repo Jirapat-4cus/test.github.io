@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in</title>
     <link rel="stylesheet" href="loginstyles.css">
+    <script src="loginjs.js" defer type="module"></script>
 </head>
 <body>
 
@@ -22,9 +23,8 @@
             <button type="submit">Log In</button>
             <a href="#" class="register-link">Register</a>
         </form>
+        <button id="google-login-btn" onclick="signInWithGoogle()">Sign in with Google</button>
     </div>
-
-    <script src="loginjs.js"></script>
 
 </body>
 </html>
