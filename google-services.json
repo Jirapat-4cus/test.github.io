@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1045161773326",
+    "project_id": "bj-app-24b96",
+    "storage_bucket": "bj-app-24b96.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045161773326:android:e76bc8d9c6e1ca79f96f5f",
+        "android_client_info": {
+          "package_name": "com.benchamarachuthit.bjnext"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXRYbR7ks96oJLbsm9PhiVZsejePHiOVE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

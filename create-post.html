@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างโพสต์</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff0f6;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .post-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+        textarea {
+            width: 90%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+        .color-options {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            display: inline-block;
+        }
+        .selected {
+            border: 3px solid black;
+        }
+        .post-button {
+            margin-top: 15px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .postit-container {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .postit {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+            font-size: 14px;
+            border-radius: 8px;
+            word-wrap: break-word;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="post-container">
+        <h2>เพิ่มความรู้สึกใหม่ ...</h2>
+        <textarea id="postText" placeholder="Type Here..."></textarea>
+        <div class="color-options">
+            <div class="color-option selected" style="background-color: #ffeb99;" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #ffb3e6;" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #b3e6c7;" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #b3d1ff;" onclick="selectColor(this)"></div>
+        </div>
+        <button class="post-button" onclick="submitPost()">POST</button>
+        <br>
+        <input type="checkbox" id="anonymousMode">
+        <label for="anonymousMode">โพสต์แบบไม่ระบุชื่อ</label>
+    </div>
+
+    <div class="postit-container" id="postitContainer"></div>
+
+    <script>
+        function selectColor(element) {
+            document.querySelectorAll(".color-option").forEach(el => {
+                el.classList.remove("selected");
+            });
+            element.classList.add("selected");
+        }
+
+        function submitPost() {
+            let text = document.getElementById("postText").value.trim();
+            let selectedColor = document.querySelector(".color-option.selected").style.backgroundColor;
+            let anonymousMode = document.getElementById("anonymousMode").checked;
+
+            if (text === "") {
+                alert("กรุณากรอกข้อความก่อนโพสต์");
+                return;
+            }
+
+            let posts = JSON.parse(localStorage.getItem("posts")) || [];
+            let timestamp = new Date().toLocaleString();
+            let newPost = {
+                text: text,
+                color: selectedColor,
+                timestamp: timestamp,
+                anonymous: anonymousMode
+            };
+
+            posts.push(newPost);
+            localStorage.setItem("posts", JSON.stringify(posts));
+            loadPosts();
+            document.getElementById("postText").value = "";
+        }
+
+        function loadPosts() {
+            let postitContainer = document.getElementById("postitContainer");
+            postitContainer.innerHTML = "";
+            let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+            posts.forEach(post => {
+                let postIt = document.createElement("div");
+                postIt.classList.add("postit");
+                postIt.style.backgroundColor = post.color;
+                postIt.innerHTML = `<p>${post.text}</p><span style="font-size: 10px; position: absolute; bottom: 5px; right: 10px;">${post.timestamp}</span>`;
+                postitContainer.appendChild(postIt);
+            });
+        }
+
+        window.onload = function() {
+            loadPosts();
+        };
+    </script>
+</body>
+</html>

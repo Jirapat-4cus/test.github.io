@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์ผู้ใช้</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: #e87ca1;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            padding: 5px;
+        }
+        .menu {
+            padding: 20px;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .menu-item:hover {
+            background: #f0f0f0;
+        }
+        .menu-item i {
+            margin-right: 10px;
+            color: #e87ca1;
+        }
+        .logout {
+            text-align: center;
+            margin: 20px;
+        }
+        .logout button {
+            background: #e87ca1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .logout button:hover {
+            background: #d66b8f;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://via.placeholder.com/80" alt="User Profile">
+            <h2>สวัสดี ภูเบศ!</h2>
+            <p><strong>Name:</strong> นายภูเบศ คงกระพันธุ์</p>
+            <p><strong>Nickname:</strong> มงคล</p>
+            <p><strong>Age:</strong> 16</p>
+        </div>
+        <div class="menu">
+            <div class="menu-item"><i class="fas fa-user"></i> ข้อมูลส่วนบุคคล</div>
+            <div class="menu-item"><i class="fas fa-shield-alt"></i> ตั้งค่าความเป็นส่วนตัว</div>
+            <div class="menu-item"><i class="fas fa-info-circle"></i> เกี่ยวกับเรา</div>
+        </div>
+        <div class="logout">
+            <button>ออกจากระบบ</button>
+        </div>
+    </div>
+</body>
+</html>

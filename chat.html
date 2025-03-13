@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TALK TUAH Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            background: #e87ca1;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+        }
+        .chat-box {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .message.sent {
+            background: #e87ca1;
+            color: white;
+            align-self: flex-end;
+        }
+        .message.received {
+            background: #e0e0e0;
+            align-self: flex-start;
+        }
+        .timestamp {
+            font-size: 10px;
+            color: #666;
+            margin-top: 5px;
+            align-self: flex-end;
+        }
+        .input-box {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #e87ca1;
+        }
+        .input-box input {
+            flex-grow: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+        .input-box button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">TALK TUAH</div>
+        <div class="chat-box" id="chatBox">
+            <div class="message received">
+                <span>สวัสดี!</span>
+                <span class="timestamp">12:00</span>
+            </div>
+            <div class="message sent">
+                <span>สวัสดีครับ</span>
+                <span class="timestamp">12:01</span>
+            </div>
+        </div>
+        <div class="input-box">
+            <input type="text" id="messageInput" placeholder="พิมพ์ข้อความ...">
+            <button onclick="sendMessage()">&#9993;</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            var input = document.getElementById("messageInput");
+            var messageText = input.value.trim();
+            if (messageText !== "") {
+                var chatBox = document.getElementById("chatBox");
+                var messageDiv = document.createElement("div");
+                messageDiv.classList.add("message", "sent");
+                
+                var messageSpan = document.createElement("span");
+                messageSpan.textContent = messageText;
+                
+                var timestamp = document.createElement("span");
+                timestamp.classList.add("timestamp");
+                var now = new Date();
+                var hours = now.getHours().toString().padStart(2, '0');
+                var minutes = now.getMinutes().toString().padStart(2, '0');
+                timestamp.textContent = hours + ":" + minutes;
+                
+                messageDiv.appendChild(messageSpan);
+                messageDiv.appendChild(timestamp);
+                chatBox.appendChild(messageDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                input.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
