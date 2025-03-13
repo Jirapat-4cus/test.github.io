@@ -1,0 +1,85 @@
+/* ตั้งค่าพื้นฐาน */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background: linear-gradient(45deg, #f48fb1, #d81b60);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* รายการโปรด */
+.favorite {
+    background: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* หมวดหมู่ */
+.categories {
+    margin: 20px;
+}
+
+.category-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.category {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category img {
+    width: 50px;
+    height: 50px;
+}
+
+/* เมนูด้านล่าง */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #f48fb1;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.bottom-nav button {
+    background: none;
+    border: none;
+}
+
+.bottom-nav img {
+    width: 30px;
+    height: 30px;
+}
