@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Care - BJ App</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .header {
+            background: #e87ca1;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .menu {
+            padding: 20px;
+        }
+        .menu-item {
+            padding: 10px 15px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .menu-item:hover {
+            background: #f0f0f0;
+        }
+        .footer {
+            background: #e87ca1;
+            height: 50px;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div id="app-name">BJ Next</div>
+        <div class="profile">
+            <div class="profile-pic" style="background-image: url(https://www.thaimediafund.or.th/wp-content/uploads/2024/07/default-avatar-profile-icon-.jpg);"></div>
+            <span>นายภูเบศ คงงง</span>
+        </div>
+    </header>
+
+    <section class="wrapper flex-col" style="padding-top: 30px;">
+    <div class="container">
+        <div class="header">
+            <a class="back-button round" href="index.html"><i class="bi bi-arrow-left"></i></a> Mental Care
+        </div>
+        <div class="menu">
+                <div class="menu-item">
+                    <div class="category flex-row" fav="true" style="width: 100%; justify-content: space-between;">
+                        <div onclick="location.href='ventingboard.html'" class="category-icon"></div>
+                        <div onclick="location.href='ventingboard.html'" class="flex-col" style="align-items: flex-start; width: 100%; padding: 0px 20px;">
+                            <div class="category-title">บอร์ดระบาย</div>
+                            <div class="category-desc">พื้นที่ระบายความรู้สึก ผ่านบอร์ด Sticky Note</div>
+                        </div>
+                        <div class="star flex-row" style="width: 6%;"><i class="bi bi-star-fill"></i></div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="category flex-row" fav="true" style="width: 100%; justify-content: space-between;">
+                        <div onclick="location.href='talktuah.html'" class="category-icon"></div>
+                        <div onclick="location.href='talktuah.html'" class="flex-col" style="align-items: flex-start; width: 100%; padding: 0px 20px;">
+                            <div class="category-title">TALK TUAH</div>
+                            <div class="category-desc">ปรึกษาครูแนะแนวโดยตรง</div>
+                        </div>
+                        <div class="star flex-row" style="width: 6%;"><i class="bi bi-star-fill"></i></div>
+                    </div>
+                </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="index.html"><button class="round"><i class="bi bi-house-door-fill"></i></button></a>
+        <a href="info.html" ><button class="round"><i class="bi bi-list"></i></button></a>
+    </div>
+
+    <script>
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

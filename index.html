@@ -3,31 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Care App</title>
+    <title>BJ App</title>
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div id="app-name">BJ Next</div>
         <div class="profile">
-            <div class="profile-pic"></div>
-            <!--<img src="profile.png" alt="Profile">-->
+            <div class="profile-pic" style="background-image: url(https://www.thaimediafund.or.th/wp-content/uploads/2024/07/default-avatar-profile-icon-.jpg);"></div>
             <span>นายภูเบศ คงงง</span>
         </div>
     </header>
 
     <section>
             <div id="favsec" class="section flex-col">
-                <div class="section-title">⭐ รายการโปรด</div>
+                <div class="section-title"><i style="color: gold;" class="bi bi-star-fill"></i> รายการโปรด</div>
                 <div class="section-content flex-row"></div>
             </div>
             <div id="catsec" class="section flex-col">
                 <div class="section-title">หมวดหมู่</div>
                 <div class="section-content flex-row">
-                    <div class="category flex-col" fav="true">
-                        <div class="category-icon"></div>
-                        <div class="category-title">Mental Care</div>
-                    </div>
+                    <a href="mentalcare.html">
+                        <div class="category flex-col" fav="true">
+                            <div class="category-icon"></div>
+                            <div class="category-title">Mental Care</div>
+                        </div>
+                    </a>
                     <div class="category flex-col" fav="false">
                         <div class="category-icon"></div>
                         <div class="category-title">R-Waste</div>
@@ -37,8 +39,8 @@
     </section>
     
     <div class="bottom-nav">
-        <button class="round"><i class="bi bi-house-door-fill"></i></button>
-        <button class="round"><i class="bi bi-gear"></i></button>
+        <a href="index.html"><button class="round active"><i class="bi bi-house-door-fill"></i></button></a>
+        <a href="info.html" ><button class="round"><i class="bi bi-list"></i></button></a>
     </div>
 
     <script src="cat.js"></script>

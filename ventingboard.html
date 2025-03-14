@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างโพสต์</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="postitstyles.css">
+</head>
+<body style="background-color: #fff0f6;">
+    <header>
+        <div id="app-name">BJ Next</div>
+        <div class="profile">
+            <div class="profile-pic" style="background-image: url(https://www.thaimediafund.or.th/wp-content/uploads/2024/07/default-avatar-profile-icon-.jpg);"></div>
+            <span>นายภูเบศ คงงง</span>
+        </div>
+    </header>
+    
+    <section class="wrapper flex-col">
+        <div class="post-container flex-col hidden" id="postContainer">
+            <div class="post-head">เพิ่มความรู้สึกใหม่ ...</div>
+            <div class="post-text-container">
+                <textarea id="postText" placeholder="Type Here..."></textarea>
+            </div>
+            <div class="post-color-container">
+                <div class="post-color-opt selected" style="background-color: #ffeb99;" onclick="selectColor(this)"></div>
+                <div class="post-color-opt" style="background-color: #ffb3e6;" onclick="selectColor(this)"></div>
+                <div class="post-color-opt" style="background-color: #b3e6c7;" onclick="selectColor(this)"></div>
+                <div class="post-color-opt" style="background-color: #b3d1ff;" onclick="selectColor(this)"></div>
+            </div>
+            <div class="post-btn-container flex-col">
+                <button class="post-button" onclick="submitPost()">POST</button>
+                <div>
+                    <input type="checkbox" id="anonymousMode" checked="true">
+                    <label for="anonymousMode">โพสต์แบบไม่ระบุชื่อ</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="postit-container" id="postitContainer"></div>
+    </section>
+
+        <div class="w100 flex-col">
+            <div class="board-tools flex-row">
+                <button class="plus-btn" onclick="location.href='mentalcare.html'" style="font-size: 24px;"><i class="bi bi-arrow-left-circle"></i></button>
+                <button id="plusButton" class="plus-btn" style="font-size: 36px;"><i class="bi bi-plus-circle-fill"></i></button>
+                <button class="plus-btn"><i class="bi bi-gear" style="font-size: 24px;"></i></button>
+            </div>
+        </div>
+        <div class="bottom-nav">
+            <a href="index.html"><button class="round"><i class="bi bi-house-door-fill"></i></button></a>
+            <a href="info.html" ><button class="round"><i class="bi bi-list"></i></button></a>
+        </div>
+    
+    <script>
+        const plusButton = document.getElementById("plusButton");
+        const postContainer = document.getElementById("postContainer");
+
+        function hidePost(){
+            postContainer.classList.add("hidden");
+        }
+
+        plusButton.addEventListener("click", () => {
+            postContainer.classList.toggle("hidden");
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!postContainer.contains(event.target) && !plusButton.contains(event.target)) {
+                hidePost();
+            }
+        });
+
+        function selectColor(element) {
+            document.querySelectorAll(".post-color-opt").forEach(el => {
+                el.classList.remove("selected");
+            });
+            element.classList.add("selected");
+        }
+
+        function submitPost() {
+            let text = document.getElementById("postText").value.trim();
+            let selectedColor = document.querySelector(".post-color-opt.selected").style.backgroundColor;
+            let anonymousMode = document.getElementById("anonymousMode").checked;
+
+            if (text == "") {
+                return;
+            }
+
+            hidePost();
+            let posts = JSON.parse(localStorage.getItem("posts")) || [];
+            let timestamp = new Date().toLocaleString();
+            let newPost = {
+                text: text,
+                color: selectedColor,
+                timestamp: timestamp,
+                anonymous: anonymousMode
+            };
+
+            posts.push(newPost);
+            localStorage.setItem("posts", JSON.stringify(posts));
+            loadPosts();
+            document.getElementById("postText").value = "";
+        }
+
+        function loadPosts() {
+            let postitContainer = document.getElementById("postitContainer");
+            postitContainer.innerHTML = "";
+            let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+            posts.forEach(post => {
+                let postIt = document.createElement("div");
+                postIt.classList.add("postit");
+                postIt.style.backgroundColor = post.color;
+                postIt.innerHTML = `<p>${post.text}</p><span style="font-size: 10px; position: absolute; bottom: 5px; right: 10px;"></span>`; //${post.timestamp}
+                postitContainer.appendChild(postIt);
+            });
+        }
+
+        window.onload = function() {
+            loadPosts();
+        };
+    </script>
+</body>
+</html>
