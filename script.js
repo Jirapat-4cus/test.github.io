@@ -1,3 +1,24 @@
+// นำเข้า Firebase SDK
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+// 🔥 ตั้งค่า Firebase Config (เปลี่ยนเป็นค่าของโปรเจกต์คุณ)
+const firebaseConfig = {
+    apiKey: "AIzaSyBCJKrZt1lU54uFmkka3HrtRPsILAL-zGQ",
+    authDomain: "bj-app-24b96.firebaseapp.com",
+    projectId: "bj-app-24b96",
+    storageBucket: "bj-app-24b96.firebasestorage.app",
+    messagingSenderId: "1045161773326",
+    appId: "1:1045161773326:web:20554c66a8e34896f96f5f",
+    measurementId: "G-MSYP0PK6D7"
+  };
+
+// 🔥 เริ่มต้น Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const postsRef = ref(db, "posts"); // โหนดสำหรับเก็บโพสต์
+
+// ดึง Elements จาก HTML
 const addBtn = document.querySelector('.add-btn');
 const postModal = document.getElementById('post-modal');
 const closeBtn = document.querySelector('.close');
@@ -9,66 +30,72 @@ const postGrid = document.getElementById('post-grid');
 
 let selectedColor = '#ffcccc'; // Default color
 
+// 🎨 เลือกสีของโพสต์
 colorOptions.forEach(option => {
     option.addEventListener('click', () => {
         selectedColor = option.dataset.color;
     });
 });
 
-addBtn.addEventListener('click', () => {
-    postModal.style.display = 'block';
-});
-
-closeBtn.addEventListener('click', () => {
-    postModal.style.display = 'none';
-});
-
+// 📌 เปิด/ปิด Modal
+addBtn.addEventListener('click', () => { postModal.style.display = 'block'; });
+closeBtn.addEventListener('click', () => { postModal.style.display = 'none'; });
 window.addEventListener('click', (event) => {
     if (event.target == postModal) {
         postModal.style.display = 'none';
     }
 });
 
+// 📌 กดปุ่มโพสต์
 postBtn.addEventListener('click', () => {
     const content = postContent.value;
     const anonymous = anonymousCheckbox.checked;
-    createPostIt(content, selectedColor, anonymous);
-    postContent.value = '';
-    postModal.style.display = 'none';
+
+    if (content.trim() === "") {
+        alert("กรุณากรอกข้อความก่อนโพสต์!");
+        return;
+    }
+
+    // ✅ บันทึกลง Firebase
+    const newPostRef = push(postsRef);
+    set(newPostRef, {
+        id: newPostRef.key, // ใช้ key เป็น ID
+        content: content,
+        color: selectedColor,
+        anonymous: anonymous,
+        timestamp: Date.now()
+    });
+
+    postContent.value = ''; // ล้างช่องกรอกข้อมูล
+    postModal.style.display = 'none'; // ปิด Modal
 });
 
-function createPostIt(content, color, anonymous) {
+// 📌 ฟังก์ชันสร้าง Post-it
+function createPostIt(post) {
     const postIt = document.createElement('div');
     postIt.classList.add('post-it');
-    postIt.style.backgroundColor = color;
-    postIt.textContent = content;
+    postIt.style.backgroundColor = post.color;
+    postIt.textContent = post.content;
+    postIt.setAttribute("data-id", post.id); // เก็บ ID ไว้ที่ element
     postGrid.appendChild(postIt);
 }
 
-// Load existing posts from local storage (if any)
-const posts = JSON.parse(localStorage.getItem('posts')) || [];
-posts.forEach(post => {
-    createPostIt(post.content, post.color, post.anonymous);
+// 📌 โหลดโพสต์ที่มีอยู่ใน Firebase
+onChildAdded(postsRef, (snapshot) => {
+    const post = snapshot.val();
+    createPostIt(post);
+
+    setTimeout(() => {
+        remove(ref(db, `posts/${post.id}`)); // ลบจาก Firebase
+    }, 60 * 1000); // 1 นาที
+
 });
 
-// Save posts to local storage
-window.addEventListener('beforeunload', () => {
-    const postIts = document.querySelectorAll('.post-it');
-    const posts = [];
-    postIts.forEach(postIt => {
-        posts.push({
-            content: postIt.textContent,
-            color: postIt.style.backgroundColor,
-            anonymous: anonymousCheckbox.checked // Assuming anonymous mode is the same for all posts
-        });
-    });
-    localStorage.setItem('posts', JSON.stringify(posts));
+// 📌 ลบโพสต์ออกจากหน้าจอเมื่อถูกลบจาก Firebase
+onChildRemoved(postsRef, (snapshot) => {
+    const postId = snapshot.key;
+    const postElement = document.querySelector(`[data-id="${postId}"]`);
+    if (postElement) {
+        postElement.remove(); // ลบออกจาก DOM
+    }
 });
-
-// ตั้งเวลาให้ Post-it ทั้งหมดหายไปทุกๆ 1 นาที
-setInterval(() => {
-    const postIts = document.querySelectorAll('.post-it');
-    postIts.forEach(postIt => {
-        postIt.remove();
-    });
-}, 60 * 1000); // 1 นาที * 60 วินาที * 1000 มิลลิวินาที

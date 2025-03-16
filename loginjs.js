@@ -35,4 +35,3 @@ async function signInWithGoogle() {
 
 // 👉 ผูกฟังก์ชันกับปุ่มใน HTML
 document.getElementById("google-login-btn").addEventListener("click", signInWithGoogle);
-document.getElementById("logout-btn").addEventListener("click", logout);
