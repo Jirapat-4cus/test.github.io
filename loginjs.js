@@ -25,6 +25,7 @@ async function signInWithGoogle() {
         const user = result.user;
         console.log("✅ Login Success:", user.displayName, user.email);
         alert(`Welcome, ${user.displayName}!`);
+        window.location.href = "index.html";
     } catch (error) {
         console.error("❌ Login Error:", error.message);
         alert("Login Failed! " + error.message);
