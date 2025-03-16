@@ -1,35 +1,37 @@
+// Import Firebase SDK (สำหรับโมดูล)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-  import { getAuth , googleAuthProvider , signInWithPopup } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-Auth.js";
+// 🔥 ตั้งค่า Firebase Config (แทนด้วยของโปรเจกต์คุณ)
+const firebaseConfig = {
+  apiKey: "AIzaSyBCJKrZt1lU54uFmkka3HrtRPsILAL-zGQ",
+  authDomain: "bj-app-24b96.firebaseapp.com",
+  projectId: "bj-app-24b96",
+  storageBucket: "bj-app-24b96.firebasestorage.app",
+  messagingSenderId: "1045161773326",
+  appId: "1:1045161773326:web:20554c66a8e34896f96f5f",
+  measurementId: "G-MSYP0PK6D7"
+};
 
+// 🔥 Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBCJKrZt1lU54uFmkka3HrtRPsILAL-zGQ",
-    authDomain: "bj-app-24b96.firebaseapp.com",
-    projectId: "bj-app-24b96",
-    storageBucket: "bj-app-24b96.firebasestorage.app",
-    messagingSenderId: "1045161773326",
-    appId: "1:1045161773326:web:20554c66a8e34896f96f5f",
-    measurementId: "G-MSYP0PK6D7"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const provider = new googleAuthProvider();
-  const auth = getAuth(app);
-  auth.languageCode = 'en';
-
-  const googleLogin = document.getElementById("google-login-btn");
-    googleLogin.addEventListener("click", function(){
-    signInWithPopup(auth, provider)
-    .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
+// 👉 ฟังก์ชันล็อกอินด้วย Google
+async function signInWithGoogle() {
+    try {
+        const result = await signInWithPopup(auth, provider);
         const user = result.user;
-        console.log(user);
-        window.location.href = "index.html";
+        console.log("✅ Login Success:", user.displayName, user.email);
+        alert(`Welcome, ${user.displayName}!`);
+    } catch (error) {
+        console.error("❌ Login Error:", error.message);
+        alert("Login Failed! " + error.message);
+    }
+}
 
-    }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-    });
 
-    });
+// 👉 ผูกฟังก์ชันกับปุ่มใน HTML
+document.getElementById("google-login-btn").addEventListener("click", signInWithGoogle);
+document.getElementById("logout-btn").addEventListener("click", logout);
