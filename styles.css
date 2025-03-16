@@ -5,7 +5,18 @@
     --pink-light: #DB81B4;
     --pink-dark: #c4689d;
     --gray-light: #D4D4D4;
-    --dark-light: #666666;
+    --gray-dark: #666666;
+}
+
+*{
+    font-family: "IBM Plex Sans Thai", sans-serif;;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+hr{
+    width: 100%;
 }
 
 a{
@@ -38,13 +49,6 @@ a{
 .wrapper{
     width: 100vw;
     padding: 20px;
-}
-
-*{
-    font-family: "IBM Plex Sans Thai", sans-serif;;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 header{
@@ -165,7 +169,7 @@ header{
 
 .button-rect{
     height: 45px;
-    line-height: 1;
+    line-height: 0;
     background-color: var(--pink-light);
     color: #FFFFFF;
     border: none;
@@ -180,6 +184,16 @@ header{
 .button-rect:hover{
     background-color: var(--pink-dark);
     font-size: 1.02rem;
+}
+
+.button-rect-out{
+    color: var(--pink-light);
+    background-color: white;
+    border: var(--pink-light) solid 1px;
+}
+
+.button-rect-out:hover{
+    background-color: rgb(255, 247, 253);
 }
 
 .container {
@@ -207,7 +221,8 @@ header{
 }
 .info-menu {
     width: 100%;
-    padding: 15px 40px;
+    padding: 15px 30px;
+    gap: 10px;
 }
 .info-menu-item {
     width: 100%;

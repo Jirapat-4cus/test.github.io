@@ -1,26 +1,16 @@
 body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-    background: linear-gradient(45deg, #f48fb1, #d81b60);
+    background: linear-gradient(45deg, var(--pink-light), #d81b60);
 }
 
 .login-container {
-    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 350px;
-}
-
-h1 {
-    color: #f48fb1;
 }
 
 input {
@@ -30,29 +20,43 @@ input {
     border: none;
     border-radius: 5px;
     background: #eee;
+    transition: all .3s ease;
+}
+
+input:focus{
+    background-color: white;
+    outline-color: var(--pink-dark);
 }
 
 .remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
+    text-align: right;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    margin-bottom: 12px;
 }
 
-button {
+.button-rect{
     width: 100%;
-    padding: 10px;
-    background: #f48fb1;
-    border: none;
-    color: white;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 10px;
 }
 
-.register-link {
-    display: block;
-    margin-top: 10px;
-    color: #f48fb1;
-    text-decoration: none;
-    font-size: 14px;
+.redirect-log-sign{
+    font-size: 0.95rem;
+    margin-top: 20px;
+    gap: 6px;
+}
+
+.redirect-log-sign a{
+    color: var(--pink-dark);
+}
+
+.x-button{
+    position: absolute;
+    top: 3%;
+    left: 5%;
+    font-size: 1rem;
+    line-height: 0;
+    background: none;
+    color: white;
+    border: white 1px solid;
 }

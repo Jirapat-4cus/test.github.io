@@ -10,7 +10,7 @@
 }
 
 .plus-btn {
-    color: var(--dark-light);
+    color: var(--gray-dark);
     line-height: 0;
     background: none;
     width: 50px;
