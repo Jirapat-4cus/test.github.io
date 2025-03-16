@@ -10,11 +10,8 @@
 </head>
 <body style="background-color: #fff0f6;">
     <header>
-        <div id="app-name">BJ Next</div>
-        <div class="profile" onclick="location.href='login.html'">
-            <div class="profile-pic" style="background-image: url(https://www.thaimediafund.or.th/wp-content/uploads/2024/07/default-avatar-profile-icon-.jpg);"></div>
-            <span>เข้าสู่ระบบ</span>
-        </div>
+        <div id="app-name">บอร์ดระบาย</div>
+        <button onclick="history.back()" class="round x-button-lone"><i class="bi bi-x-lg"></i></button>
     </header>
     
     <section class="wrapper flex-col">
@@ -30,28 +27,19 @@
                 <div class="post-color-opt" style="background-color: #b3d1ff;" onclick="selectColor(this)"></div>
             </div>
             <div class="post-btn-container flex-col">
-                <button class="post-button" onclick="submitPost()">POST</button>
-                <div>
-                    <input type="checkbox" id="anonymousMode" checked="true">
-                    <label for="anonymousMode">โพสต์แบบไม่ระบุชื่อ</label>
-                </div>
+                <button class="post-button" onclick="submitPost()">โพสต์</button>
             </div>
         </div>
 
         <div class="postit-container" id="postitContainer"></div>
     </section>
 
-        <div class="w100 flex-col">
-            <div class="board-tools flex-row">
-                <button class="plus-btn" onclick="location.href='mentalcare.html'" style="font-size: 24px;"><i class="bi bi-arrow-left-circle"></i></button>
-                <button id="plusButton" class="plus-btn" style="font-size: 36px;"><i class="bi bi-plus-circle-fill"></i></button>
-                <button class="plus-btn"><i class="bi bi-gear" style="font-size: 24px;"></i></button>
-            </div>
+    <div class="w100 flex-col">
+        <div class="board-tools flex-row">
+            <button id="plusButton" class="plus-btn" style="font-size: 36px;"><i class="bi bi-plus-circle-fill"></i></button>
+            <button class="plus-btn"><i class="bi bi-gear" style="font-size: 24px;"></i></button>
         </div>
-        <div class="bottom-nav">
-            <a href="index.html"><button class="round"><i class="bi bi-house-door-fill"></i></button></a>
-            <a href="info.html" ><button class="round"><i class="bi bi-list"></i></button></a>
-        </div>
+    </div>
     
     <script>
         const plusButton = document.getElementById("plusButton");
@@ -76,6 +64,8 @@
                 el.classList.remove("selected");
             });
             element.classList.add("selected");
+            let selectedColor = document.querySelector(".post-color-opt.selected").style.backgroundColor;
+            document.getElementById("postText").style.outlineColor = selectedColor;
         }
 
         function submitPost() {

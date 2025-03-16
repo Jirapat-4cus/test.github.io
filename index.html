@@ -6,25 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BJ Next</title>
 
-    <!-- ✅ ใช้ Firebase เวอร์ชันที่รองรับแบบเก่า -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-
-    <script>
-        // ✅ ตั้งค่า Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBCJKrZt1lU54uFmkka3HrtRPsILAL-zGQ",
-            authDomain: "bj-app-24b96.firebaseapp.com",
-            projectId: "bj-app-24b96",
-            storageBucket: "bj-app-24b96.firebasestorage.app",
-            messagingSenderId: "1045161773326",
-            appId: "1:1045161773326:web:20554c66a8e34896f96f5f",
-            measurementId: "G-MSYP0PK6D7"
-        };
-
-        // ✅ เริ่มต้น Firebase (ใช้ compat)
-        firebase.initializeApp(firebaseConfig);
-    </script>
+    
+    <script src="account.js"></script>
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -49,15 +34,15 @@
             <div class="section-title">หมวดหมู่</div>
             <div class="section-content flex-row">
                 <a href="mentalcare.html">
-                    <div class="category flex-col" fav="true">
-                        <div class="category-icon"></div>
+                    <div class="category flex-col" fav="false">
+                        <div class="category-icon" style="background-image: url(logo\ and\ icon/mentalcare.gif);"></div>
                         <div class="category-title">Mental Care</div>
                     </div>
                 </a>
-                <div class="category flex-col" fav="false">
+                <!-- <div class="category flex-col" fav="false">
                     <div class="category-icon"></div>
                     <div class="category-title">R-Waste</div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -66,27 +51,6 @@
         <a href="index.html"><button class="round active"><i class="bi bi-house-door-fill"></i></button></a>
         <a href="info.html"><button class="round"><i class="bi bi-list"></i></button></a>
     </div>
-
-    <!-- ✅ อัปเดต UI ด้วยข้อมูล Firebase -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const auth = firebase.auth();
-            const profileName = document.getElementById("profile-name");
-            const profilePic = document.getElementById("profile-pic");
-
-            auth.onAuthStateChanged((user) => {
-                console.log("User:", user); // ✅ Debug
-
-                if (user) {
-                    profileName.textContent = user.displayName || "ไม่มีชื่อผู้ใช้";
-                    profilePic.style.backgroundImage = `url(${user.photoURL || "https://www.thaimediafund.or.th/wp-content/uploads/2024/07/default-avatar-profile-icon-.jpg"})`;
-                } else {
-                    profileName.textContent = "เข้าสู่ระบบ";
-                    profilePic.style.backgroundImage = `url("https://www.thaimediafund.or.th/wp-content/uploads/2024/07/default-avatar-profile-icon-.jpg")`;
-                }
-            });
-        });
-    </script>
 
     <script src="cat.js"></script>
 

@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="loginstyles.css">
+    <link rel="stylesheet" href="accountstyles.css">
     <script src="loginjs.js" defer type="module"></script>
 </head>
 <body>
-    <button onclick="history.back()" class="round x-button"><i class="bi bi-x-lg"></i></button>
+    <button onclick="location.href='index.html'" class="round x-button"><i class="bi bi-x-lg"></i></button>
     <div class="container login-container flex-col">
         <h1>ยินดีต้อนรับ</h1>
         <form id="loginForm">
@@ -22,8 +22,8 @@
             <button type="submit" class="button-rect">เข้าสู่ระบบ</button>
         </form>
         <div class="flex-row w100" style="gap: 10px; padding: 4px 0; color: var(--gray-dark);"><hr> หรือ <hr></div>
-        <button id="google-login-btn" class="button-rect button-rect-out" onclick="signInWithGoogle()">Sign in with Google</button>
-        <div class="flex-row redirect-log-sign">ยังไม่มีบัญชี? <a href="#" id="register">ลงทะเบียน</a></div>
+        <button id="google-login-btn" class="button-rect button-rect-out" onclick="signInWithGoogle()"><i class="bi bi-google" style="margin-right: 4px;"></i> Sign in with Google</button>
+        <div class="flex-row redirect-log-sign">ยังไม่มีบัญชี? <a href="register.html" id="register">ลงทะเบียน</a></div>
     </div>
 </body>
 </html>

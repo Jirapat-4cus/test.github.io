@@ -3,28 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="registerstyles.css">
+    <title>Log in</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="accountstyles.css">
 </head>
 <body>
-
-    <div class="register-container">
-        <h1>Register</h1>
-        <form id="registerForm">
-            <input type="text" id="name" placeholder="Name" required>
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-
-            <div class="remember-me">
-                <label><input type="checkbox" id="rememberMe"> Remember me</label>
+    <button onclick="location.href='index.html'" class="round x-button"><i class="bi bi-x-lg"></i></button>
+    <div class="container login-container flex-col">
+        <h1>ยินดีต้อนรับ</h1>
+        <form id="regForm1" class="flex-col w100">
+            <input type="text" id="username" placeholder="อีเมล" required>
+            <input type="password" id="password" placeholder="รหัสผ่าน" required>
+            <input type="password" id="conpassword" placeholder="ยืนยันรหัสผ่าน" required>
+            <div class="flex-row w100" style="gap: 10px; padding: 4px 0; color: var(--gray-dark);"><hr> หรือ <hr></div>
+            <div class="otheropt w100">
+                <button id="google-login-btn" class="button-rect button-rect-out" onclick="signInWithGoogle()"><i class="bi bi-google" style="margin-right: 4px;"></i> Sign up with Google</button>
             </div>
-
-            <button type="submit">Register</button>
+            
+            <div class="flex-row w100" style="margin-top: 10px; gap: 10px;">
+                <button class="button-rect" disabled>ย้อนกลับ</button>
+                <button type="submit" class="button-rect" onclick="changeLevel(2)">ถัดไป</button>
+            </div>
         </form>
+
+        <form id="regForm2" class="flex-col w100 hidden">
+            <input type="text" id="fname" placeholder="ชื่อ" required>
+            <input type="text" id="lname" placeholder="นามสกุล" required>
+            <input type="text" id="idcode" placeholder="เลขขัตรประชาชน" required>
+            <input type="text" id="stcode" placeholder="รหัสนักเรียน" required>
+            
+            <div class="flex-row w100" style="margin-top: 10px; gap: 10px;">
+                <button class="button-rect button-rect-gray" onclick="changeLevel(1)">ย้อนกลับ</button>
+                <button type="submit" class="button-rect" onclick="changeLevel(2)">ถัดไป</button>
+            </div>
+        </form>
+        
+        <div class="flex-row redirect-log-sign">มีบัญชีแล้ว? <a href="login.html">เข้าสู่ระบบ</a></div>
+
+        <script>
+            function changeLevel(level){
+                curVel = level; dis = false;
+                document.querySelectorAll("form").forEach(reg => {
+                    if(reg.id == "regForm" + level){
+                        reg.classList.remove("hidden");
+                    }
+                    else reg.classList.add("hidden")
+                });
+            }
+        </script>
     </div>
-
-    <script src="script.js"></script>
-
 </body>
 </html>

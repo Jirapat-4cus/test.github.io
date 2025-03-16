@@ -2,9 +2,9 @@
     z-index: 1;
     background-color: white;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-    width: 200px;
+    width: 110px;
     border-radius: 25px;
-    margin-bottom: calc(60px + 4vh);
+    margin-bottom: 4vh;
     justify-content: space-between;
     position: fixed; bottom: 0;
 }
@@ -40,7 +40,8 @@
 .post-head{
     font-size: clamp(1.3rem, 4vh, 1.6rem); /*1.1*/
     font-weight: 700;
-    margin-bottom: 1vh;
+    padding-top: 2px;
+    margin-bottom: 0.9vh;
 }
 .post-text-container{
     width: 100%;
@@ -81,9 +82,11 @@ textarea {
     background-color: #e91e63;
     color: white;
     border: none;
-    padding: clamp(4px, 1vh, 6px) clamp(36px, 6vh, 40px);
+    padding: clamp(16px, 5vh, 20px) clamp(36px, 6vh, 40px);
     border-radius: 25px;
     font-size: clamp(16px, 2.8vh, 20px);
+    font-weight: 500;
+    line-height: 0;
     cursor: pointer;
 }
 .postit-container {

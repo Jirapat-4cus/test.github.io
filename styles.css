@@ -25,6 +25,8 @@ a{
 }
 
 .hidden{
+    display: none !important;
+    opacity: 0%;
     visibility: hidden;
 }
 
@@ -111,15 +113,17 @@ header{
 }
 
 .category-icon{
-    background-color: var(--gray-light);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    height: 60px;
+    display: flex;
+    height: 70px;
     aspect-ratio: 1;
     border-radius: 50%;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .category-title{
-    padding-top: 8px;
     color: var(--pink-dark);
     font-size: 1rem;
     font-weight: 600;
@@ -181,9 +185,22 @@ header{
     transition: all .1s ease-in-out;
 }
 
+.button-rect:disabled{
+    background-color: var(--gray-light);
+    cursor: default;
+}
+
+.button-rect:disabled:hover{
+    background-color: var(--gray-light);
+}
+
 .button-rect:hover{
     background-color: var(--pink-dark);
     font-size: 1.02rem;
+}
+
+.button-rect-gray{
+    background-color: var(--gray-dark);
 }
 
 .button-rect-out{
@@ -255,4 +272,19 @@ header{
 }
 .star:hover{
     font-size: 22px;
+}
+
+.x-button{
+    font-size: 1rem;
+    line-height: 0;
+    background: none;
+    color: white;
+    border: white 1px solid;
+}
+
+.x-button-lone{
+    font-size: 1.1rem;
+    line-height: 0;
+    background: none;
+    color: white;
 }
